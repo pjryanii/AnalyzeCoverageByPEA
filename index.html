@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Analyze Coverage by FCC PEA</title>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/light/main.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://js.arcgis.com/4.33/"></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="hero">
+      <div class="eyebrow">TELECOM COVERAGE ANALYSIS</div>
+      <h1>Analyze Coverage by FCC PEA</h1>
+      <p>Select a persistent propagation record, then run the population analysis for an FCC PEA.</p>
+    </header>
+
+    <section class="card auth-row">
+      <div><span class="label-small">ArcGIS Online</span><div id="userLabel">Not signed in</div></div>
+      <div class="button-row">
+        <button id="signInButton" class="button secondary" type="button">Sign in</button>
+        <button id="signOutButton" class="button link" type="button" hidden>Sign out</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="title-row">
+        <div><h2>Analysis inputs</h2><p>Most recent coverage records appear first.</p></div>
+        <button id="refreshButton" class="button secondary compact" type="button" disabled>Refresh</button>
+      </div>
+
+      <label for="coverageSelect">Propagation coverage record <span class="required">*</span></label>
+      <select id="coverageSelect" disabled><option value="">Sign in to load records</option></select>
+      <p class="help">The list shows TIFF name and run date. The selected record Object ID is submitted to the web tool.</p>
+
+      <div id="coverageDetails" class="details" hidden>
+        <div><span>TIFF name</span><strong id="selectedTiffName"></strong></div>
+        <div><span>Coverage created</span><strong id="selectedRunDate"></strong></div>
+        <div><span>Created by</span><strong id="selectedCreatedBy"></strong></div>
+      </div>
+
+      <label for="peaNumber">FCC PEA number <span class="required">*</span></label>
+      <input id="peaNumber" type="text" inputmode="numeric" autocomplete="off" placeholder="Enter PEA number" disabled>
+
+      <label for="analysisName">Analysis name <span class="required">*</span></label>
+      <input id="analysisName" type="text" maxlength="256" autocomplete="off" placeholder="Enter a descriptive analysis name" disabled>
+      <div id="analysisNameCounter" class="counter">0 / 256</div>
+
+      <button id="runButton" class="button primary full" type="button" disabled>Run PEA Analysis</button>
+    </section>
+
+    <section class="card" aria-live="polite">
+      <div id="progress" class="progress" hidden><div></div></div>
+      <div id="status" class="status info">Sign in to begin.</div>
+      <pre id="jobDetails" class="job-details" hidden></pre>
+    </section>
+
+    <section id="resultsCard" class="card results" hidden>
+      <h2>Analysis complete</h2>
+      <div id="resultSummary"></div>
+    </section>
+  </main>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
