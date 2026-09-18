@@ -1,7 +1,7 @@
 window.APP_CONFIG = {
   portalUrl: "https://lo-doun.maps.arcgis.com",
   clientId: "4eV5Tpu3LAc9n0Z7",
-  coverageItemId: "b73779714ec940f4bae332ea2f3c487a",
+  coverageItemId: "915eeedb727e4ad28d83b64fadcf2acf",
   coverageLayerIndex: 0,
   tiffNameField: "TIFF_NAME",
   runDatetimeField: "RUN_DATETIME",
