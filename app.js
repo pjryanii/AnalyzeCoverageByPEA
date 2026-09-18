@@ -88,6 +88,11 @@ require([
     if (layer && layer.loaded) return layer;
     const item = new PortalItem({ id: c.coverageItemId, portal });
     await item.load();
+    console.log("Coverage Item");
+    console.log("Title:", item.title);
+    console.log("Type:", item.type);
+    console.log("URL:", item.url);
+    console.log("Item:", item);
     layer = new FeatureLayer({ portalItem: item, layerId: Number(c.coverageLayerIndex) });
     await layer.load();
     const names = new Set(layer.fields.map(f => f.name.toLowerCase()));
