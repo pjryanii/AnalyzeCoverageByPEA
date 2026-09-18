@@ -162,10 +162,22 @@ require([
       if (submitted.error) throw arcError(submitted.error);
       if (!submitted.jobId) throw new Error("The web tool did not return a job ID.");
       const job=await monitor(submitted.jobId);
-      const result=await getJson(`${strip(c.webToolUrl)}/jobs/${encodeURIComponent(submitted.jobId)}/results/${encodeURIComponent(c.outputSummaryParameter)}`,{f:"json",token:credential.token});
-      if (result.error) throw arcError(result.error);
-      ui.summary.textContent = result.value == null ? "Analysis completed, but Output Summary was empty." : (typeof result.value === "string" ? result.value : JSON.stringify(result.value,null,2));
-      ui.results.hidden=false; setStatus("Coverage analysis completed successfully.","success");
+      
+      ui.summary.textContent =
+  "Market coverage analysis completed successfully.";
+
+ui.results.hidden = false;
+
+await loadRecords();
+
+setStatus(
+  "Coverage analysis completed successfully.",
+  "success"
+);
+    
+      
+      
+      setStatus("Coverage analysis completed successfully.","success");
     } catch(e) { setStatus(errorText(e),"error"); }
     finally { setBusy(false); }
   }
