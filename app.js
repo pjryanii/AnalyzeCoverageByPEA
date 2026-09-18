@@ -6,7 +6,7 @@ require([
   "esri/layers/FeatureLayer"
 ], function(OAuthInfo, esriId, Portal, PortalItem, FeatureLayer) {
   "use strict";
-
+console.log("=== PEA ANALYSIS BUILD 2026-09-18 REV-1 ===");
   const c = window.APP_CONFIG;
   const byId = id => document.getElementById(id);
   const ui = {
@@ -161,7 +161,7 @@ require([
       const submitted=await postForm(strip(c.webToolUrl)+"/submitJob",params);
       if (submitted.error) throw arcError(submitted.error);
       if (!submitted.jobId) throw new Error("The web tool did not return a job ID.");
-      const job=await monitor(submitted.jobId);
+      await monitor(submitted.jobId);
       
       ui.summary.textContent =
   "Market coverage analysis completed successfully.";
@@ -175,9 +175,6 @@ setStatus(
   "success"
 );
     
-      
-      
-      setStatus("Coverage analysis completed successfully.","success");
     } catch(e) { setStatus(errorText(e),"error"); }
     finally { setBusy(false); }
   }
